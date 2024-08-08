@@ -82,6 +82,32 @@ const openAddModal = (e) => {
     target.style.display = null;
     modal = target;
 
+    // Désactiver le bouton par défaut
+    const submitAddBtn = document.querySelector('#submit-add');
+    submitAddBtn.disabled = true; // Désactive le bouton
+    submitAddBtn.style.backgroundColor = '#B3B3B3'; // Applique le style gris
+
+    // Vérification de la validité de chaque champ de formulaire fourni. 
+    const titleInput = document.querySelector('#title');
+    const categorySelect = document.querySelector('#category-select');
+    const imageInput = document.querySelector('#image');
+    
+    const checkFormValidity = () => {
+        if (titleInput.value && categorySelect.value && imageInput.files.length > 0) {
+            submitAddBtn.disabled = false; // Active le bouton
+            submitAddBtn.style.backgroundColor = '#1D6154'; // Applique le style vert
+        } else {
+            submitAddBtn.disabled = true; // Désactive le bouton
+            submitAddBtn.style.backgroundColor = '#B3B3B3'; // Applique le style gris
+        }
+    };
+    
+    // Ajouter des écouteurs d'événements
+    titleInput.addEventListener('input', checkFormValidity);
+    categorySelect.addEventListener('change', checkFormValidity);
+    imageInput.addEventListener('change', checkFormValidity);
+ 
+
     // Ajouter des écouteurs d'événements pour fermer le modal
     modal.addEventListener('click', closeModal);
     modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
@@ -224,3 +250,4 @@ file.addEventListener("change", (e) => {
 document.querySelector('.js-modal').addEventListener('click', openModal);
 document.querySelector('.js-modal-add-project').addEventListener('click', openAddModal);
 document.getElementById('add-project').addEventListener("submit", addProject);
+

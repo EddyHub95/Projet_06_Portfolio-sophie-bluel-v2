@@ -29,8 +29,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
   .then(data => {
     
       localStorage.setItem('userToken', data.token); 
-      
-    
+       
       window.location.href = "index.html"; 
   })
   .catch(error => {

@@ -3,7 +3,7 @@ const gallery = document.querySelector(".gallery");
 const logBtn = document.getElementById('userLoginBtn');
 
 
-// 1 - Fonction de mise à jour de la galerie //
+////////// 1 - Fonction de mise à jour de la galerie //////////
 export const updateGallery = () => {
   fetch('http://localhost:5678/api/works')
     .then(function (res) {
@@ -29,7 +29,7 @@ export const updateGallery = () => {
     });
 };
 
-// 2 - Filtrage des catégories //
+////////// 2 - Filtrage des catégories //////////
 // Sélectionne tous les boutons avec la classe "btn-filter" et ajoute un gestionnaire d'événements pour le clic
 const buttons = document.querySelectorAll(".btn-filter")
 buttons.forEach((button) => {
@@ -55,11 +55,11 @@ const filterCategories = (categorySelected, categoriesArr) => {
   })
 }
 
-// 3 - Vérification de la connexion utilisateur//
-// Exécute le code lorsque le DOM est entièrement chargé
+////////// 3 - Vérification de la connexion utilisateur //////////
+// Initialisation au chargement de la page //
 document.addEventListener('DOMContentLoaded', function() {
   updateGallery();
-  // Récupère l'userToken depuis le stockage local
+  // Récupère le token de l'utilisateur depuis le stockage local
   const userToken = localStorage.getItem('userToken');
   // Sélectionne à nouveau le bouton de connexion
   const logBtn = document.getElementById('userLoginBtn');
